@@ -48,14 +48,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name=".BackgroundDataReceiver"
-            android:exported="true"
-            tools:ignore="ExportedReceiver">
-            <intent-filter>
-                <action android:name="hs.passivemonitoring.DATA" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>
