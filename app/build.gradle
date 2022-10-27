@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "io.github.qobiljon.etagent"
+        applicationId "io.github.qobiljon.stress"
         minSdk 30
         targetSdk 33
         versionCode 1

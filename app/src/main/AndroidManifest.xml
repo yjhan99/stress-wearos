@@ -10,13 +10,8 @@
     <uses-permission
         android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"
         tools:ignore="HighSamplingRate" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <uses-feature android:name="android.hardware.type.watch" />
-
-    <queries>
-        <package android:name="com.google.android.wearable.healthservices" />
-    </queries>
 
     <application
         android:allowBackup="true"
@@ -26,22 +21,29 @@
         android:theme="@android:style/Theme.DeviceDefault">
 
         <service
-            android:name=".DataCollectorService"
+            android:name="io.github.qobiljon.stress.sensors.MotionHRService"
             android:exported="false" />
+        <service
+            android:name="io.github.qobiljon.stress.sensors.OffBodyService"
+            android:exported="false" />
+        <service
+            android:name="io.github.qobiljon.stress.sync.DataSubmissionService"
+            android:exported="false" />
+
 
         <uses-library
             android:name="com.google.android.wearable"
             android:required="true" />
 
-        <!-- Set to true if your app is Standalone, that is, it does not require the handheld app to run. -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
+
         <activity android:name="androidx.wear.activity.ConfirmationActivity" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="io.github.qobiljon.stress.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
