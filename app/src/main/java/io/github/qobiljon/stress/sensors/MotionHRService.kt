@@ -47,7 +47,7 @@ class MotionHRService : Service(), SensorEventListener {
     // endregion
 
     override fun onCreate() {
-        Log.e(MainActivity.TAG, "DataCollectorService.onCreate()")
+        Log.e(MainActivity.TAG, "MotionHRService.onCreate()")
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -73,7 +73,7 @@ class MotionHRService : Service(), SensorEventListener {
         val notificationIntent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
         val notificationChannelId = javaClass.name
-        val notificationChannelName = "Motion and HR service"
+        val notificationChannelName = "Motion and HR data collection"
         val notificationChannel = NotificationChannel(notificationChannelId, notificationChannelName, NotificationManager.IMPORTANCE_DEFAULT)
         notificationChannel.lightColor = Color.BLUE
         notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
@@ -86,7 +86,7 @@ class MotionHRService : Service(), SensorEventListener {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.e(MainActivity.TAG, "DataCollectorService.onStartCommand()")
+        Log.e(MainActivity.TAG, "MotionHRService.onStartCommand()")
 
         dataFiles.forEach { sensor -> samplingRates[sensor.key.stringType]?.let { samplingRate -> sensorManager.registerListener(this, sensor.key, samplingRate) } }
 
@@ -94,7 +94,7 @@ class MotionHRService : Service(), SensorEventListener {
     }
 
     override fun onDestroy() {
-        Log.e(MainActivity.TAG, "DataCollectorService.onDestroy()")
+        Log.e(MainActivity.TAG, "MotionHRService.onDestroy()")
         sensorManager.unregisterListener(this)
         super.onDestroy()
     }

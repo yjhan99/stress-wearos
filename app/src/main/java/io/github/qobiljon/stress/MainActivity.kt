@@ -72,7 +72,7 @@ class MainActivity : Activity() {
 
         // off-body service
         startForegroundService(Intent(applicationContext, OffBodyService::class.java))
-        //startForegroundService(Intent(applicationContext, DataSubmissionService::class.java))
+        startForegroundService(Intent(applicationContext, DataSubmissionService::class.java))
         LocalBroadcastManager.getInstance(applicationContext).registerReceiver(offBodyEventReceiver, IntentFilter("off-body-event"))
     }
 

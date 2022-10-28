@@ -12,7 +12,7 @@
     <string name="off_body">(OFF BODY)</string>
 
     <!-- API urls -->
-    <string name="server_host">http://192.168.2.38:8000/api</string>
+    <string name="server_host">http://192.168.219.170:8000/api</string>
 
     <string name="login">%s/api/login</string>
     <string name="register">%s/api/register</string>

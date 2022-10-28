@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 import java.io.File
@@ -45,6 +46,8 @@ class OffBodyService : Service(), SensorEventListener {
     // endregion
 
     override fun onCreate() {
+        Log.e(MainActivity.TAG, "OffBodyService.onCreate()")
+
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         // prepare sensor data files
@@ -63,7 +66,7 @@ class OffBodyService : Service(), SensorEventListener {
         val notificationIntent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
         val notificationChannelId = javaClass.name
-        val notificationChannelName = "On/off-body events tracking"
+        val notificationChannelName = "On/off-body detection"
         val notificationChannel = NotificationChannel(notificationChannelId, notificationChannelName, NotificationManager.IMPORTANCE_DEFAULT)
         notificationChannel.lightColor = Color.BLUE
         notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
@@ -76,6 +79,8 @@ class OffBodyService : Service(), SensorEventListener {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.e(MainActivity.TAG, "OffBodyService.onStartCommand()")
+
         if (sensor != null) sensorManager.registerListener(this, sensor, SAMPLING_RATE)
         return super.onStartCommand(intent, flags, startId)
     }
